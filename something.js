@@ -1,5 +1,6 @@
 const {hero, attack, added, timed_attack, fatal_death} = require('./hero')  
 const _ = require('underscore') 
+
 hero.add_new_hero('balmond', 'Berserkers fury', 'forward propagation', 2500, 500, 5000)  
 
 
