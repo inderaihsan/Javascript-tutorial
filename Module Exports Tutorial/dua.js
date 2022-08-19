@@ -28,13 +28,18 @@ const rlt = rl.createInterface({
 })
 
 rlt.question('if you can change the world, what will you do?', (answer)=>{ 
-    console.log('your answer : ', answer)
-    fs.writeFileSync('generated_file.txt', answer)
-    rlt.close()
-}) 
+    rlt.question('your answer is ' + answer + ' is there any other wish?',(other)=>{
+        const obj = {
+            'first_ans' : answer, 
+            'second_ans' : other
+        }  
+        somehuman = new satu.human('arlan', 22)
+        console.log(somehuman.name + ' saw your answer :p') 
+        obj.watcher = somehuman.name
+        fs.writeFileSync('somejsonofanswer.json', JSON.stringify(obj)) 
+        rlt.close()
+    
+    })
+})  
 
-fs.readFile('generated_file.txt', (err, data)=>{
-    if (err) throw err 
-    console.log(data.toString())
-})
 

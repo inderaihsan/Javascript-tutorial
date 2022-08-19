@@ -2,14 +2,18 @@ const out = (x) => {
     console.log('this function was fetched ',x)
 } 
 
-const human  = {
-    name : 'varo', 
-    
-    age : 19, 
+class human{
+    name =''
+    age = 0
+
+    constructor(name , age){
+        this.name = name 
+        this.age = age
+    }
 
     show_human(){
         console.log('hai nama saya ', this.name, 'saya ', this.age, ' tahun')
-    }
+    } 
 }
 
 const sin_30 = 1 
