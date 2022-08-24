@@ -1,0 +1,23 @@
+    <h1 class = "col text-center">hello! <%= char_name %>  </h1> 
+    <h2 class = "col text-center">below are list of heroes you have</h2>  
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Skill</th> 
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <% hero_owned.forEach(hro => { %> 
+        <tr>
+            <td><%= hro.name%></td>
+            <td><%= hro.type%></td>
+            <td><%= hro.skill%></td> 
+            <td> 
+                <a class = "btn btn-success badge rounded-pill" href = ""> Detail</a>
+            </td>
+         </tr> 
+     
+        <% }) %>
+        </table>    
