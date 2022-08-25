@@ -1,5 +1,5 @@
 const express = require('express')  
-const duelist = require('./models/hero_owner') 
+const herofunc = require('./models/hero_owner') 
 app = express()
 const expressLayouts = require('express-ejs-layouts') 
 
@@ -10,11 +10,11 @@ app.use(expressLayouts);
 app.set('view engine', 'ejs') 
 
 app.get('/', (req,res)=>{ 
-     const char_name = duelist.duelist.name 
-     const hero_owned = duelist.duelist.owned_hero 
+     const char_name = herofunc.duelist.name  
+     const char_zeni = herofunc.duelist.zeni
+     const hero_owned = herofunc.load_hero()   
      const title = 'welcome!' 
-     layout = 
-     res.render('index', {char_name, hero_owned, title, layout: 'layout/main layout'})
+     res.render('index', {char_name, hero_owned, char_zeni, title, layout: 'layout/main layout'})
 }) 
 
 
@@ -25,10 +25,11 @@ app.get('/about', (req,res)=>{
 
 
 app.use('/', (req,res)=>{ 
-     const char_name = duelist.duelist.name 
-     const hero_owned = duelist.duelist.owned_hero 
-     res.render('index', {char_name, hero_owned, title, 
-     layout: 'layout/main layout'})
+     const char_name = herofunc.duelist.name  
+     const char_zeni = herofunc.duelist.zeni
+     const hero_owned = herofunc.load_hero()  
+     const title = 'welcome!' 
+     res.render('index', {char_name, hero_owned, char_zeni, title, layout: 'layout/main layout'})
      
 }) 
 

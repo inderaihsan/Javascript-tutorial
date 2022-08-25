@@ -7,9 +7,9 @@ const check_dat = () =>{
         fs.mkdir('data',(err)=>{
             if(err) throw err
         })
-    } 
-    fs.writeFileSync('data/hero_owner.json', '[]','utf8')   
-    fs.writeFileSync('data/hero.json', '[]','utf8')
+    }     
+    if (! fs.existsSync('./data/hero.json')){
+        fs.writeFileSync('./data/hero.json', '[]','utf8')}
 }  
 
 check_dat()
@@ -42,7 +42,6 @@ class owner{
     } 
 
 
-
     ownhero(name, type, skill, price){
         const build = new hero(name, type, skill,price) 
         console.log(build)
@@ -54,21 +53,30 @@ class owner{
         }  
         this.owned_hero.push(build) 
         this.zeni = this.zeni - price
-
-        const fetch = fs.readFileSync('data/hero.json','utf8') 
-        const jsoned = JSON.parse(fetch) 
-        jsoned.push(obj) 
-        fs.writeFileSync('data/hero.json',JSON.stringify(jsoned),'utf8')
+        const fetched = fs.readFileSync('./data/hero.json', 'utf8') 
+        const jsoned = JSON.parse(fetched) 
+        jsoned.push(build) 
+        fs.writeFileSync('./data/hero.json', JSON.stringify(jsoned), 'utf8')
+        
         
     }
 } 
 
+const load_hero = () =>{
+    const fetched_file = fs.readFileSync('./data/hero.json', 'utf8') 
+    const allhero = JSON.parse(fetched_file) 
+    return allhero
+}
 
 duelist = new owner('arlene', 'agile', 9500)   
-duelist.ownhero('alucard', 'fighter', 'demon hunter sword',2000)
+duelist.ownhero('link', 'necromancer', 'lifesteal',2000) 
+//duelist.ownhero('hyun', 'assassin', 'stealth',2000) 
 
+console.log(load_hero)
 
 
  module.exports = {
-     duelist
-}
+     duelist, 
+     load_hero 
+} 
+
